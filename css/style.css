@@ -207,13 +207,17 @@ ul{list-style:none}
 
 /* ========== LOGO ========== */
 .site-logo {
-  max-height: 50px;
+  max-height: 80px;
   width: auto;
   display: block;
   object-fit: contain;
+  transition: var(--transition);
+}
+#header.scrolled .site-logo {
+  max-height: 60px;
 }
 .site-logo-footer {
-  max-height: 80px;
+  max-height: 120px;
   width: auto;
   display: block;
   object-fit: contain;
