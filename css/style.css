@@ -204,3 +204,18 @@ ul{list-style:none}
   .footer-grid{grid-template-columns:1fr;gap:32px}
   .stat-number{font-size:2.5rem}
 }
+
+/* ========== LOGO ========== */
+.site-logo {
+  max-height: 50px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+.site-logo-footer {
+  max-height: 80px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
