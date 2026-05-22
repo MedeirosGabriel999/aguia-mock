@@ -36,12 +36,12 @@ ul{list-style:none}
 .logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--navy)}
 .logo-name{font-family:var(--font-heading);font-size:1.5rem;font-weight:900;letter-spacing:2px;display:block;line-height:1.1}
 .logo-sub{font-size:.6rem;text-transform:uppercase;letter-spacing:1.5px;opacity:.8;display:block}
-.nav-links{display:flex;gap:28px}
-.nav-links a{color:rgba(255,255,255,.85);font-size:.9rem;font-weight:500;transition:var(--transition);position:relative}
+.nav-links{display:flex;gap:16px;align-items:center}
+.nav-links a{color:rgba(255,255,255,.85);font-size:.85rem;font-weight:500;transition:var(--transition);position:relative;white-space:nowrap}
 .nav-links a:hover{color:var(--gold)}
 .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--gold);transition:var(--transition)}
 .nav-links a:hover::after{width:100%}
-.nav-cta{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy);padding:10px 24px;border-radius:50px;font-weight:700;font-size:.85rem;transition:var(--transition);font-family:var(--font-heading)}
+.nav-cta{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy);padding:10px 20px;border-radius:50px;font-weight:700;font-size:.85rem;transition:var(--transition);font-family:var(--font-heading);white-space:nowrap}
 .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px var(--gold-glow)}
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
 .hamburger span{width:26px;height:2.5px;background:var(--white);border-radius:2px;transition:var(--transition)}
