@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard do Colaborador – VAZ Vigilância Patrimonial</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css?v=2.0">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/favicon.png">
+</head>
+<body class="dashboard-page">
+  
+  <!-- HEADER DO DASHBOARD -->
+  <header id="dashboard-header">
+    <div class="dash-navbar">
+      <div class="dash-logo">
+        <img src="assets/images/logo.png" alt="VAZ Vigilância Patrimonial" class="site-logo-dash">
+        <span class="dash-title">Portal do Colaborador</span>
+      </div>
+      <div class="dash-user">
+        <div class="user-info">
+          <span class="user-greeting">Olá, <strong id="userNameDisplay">Colaborador</strong></span>
+          <span class="user-cpf" id="userCpfDisplay">000.000.000-00</span>
+        </div>
+        <button id="btnLogout" class="btn-logout" title="Sair do Portal">
+          <i class="fas fa-sign-out-alt"></i> Sair
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="dash-main">
+    <div class="dash-container">
+      
+      <div class="dash-header">
+        <h1 class="dash-heading">Meus Documentos</h1>
+        <p class="dash-subheading">Acesse seus contra cheques de forma rápida e segura.</p>
+      </div>
+
+      <!-- SEÇÃO HOLERITES -->
+      <section class="dash-section">
+        <div class="section-top">
+          <h2><i class="fas fa-file-invoice-dollar gold"></i> Contra Cheques</h2>
+          <button class="btn-refresh" id="btnRefresh" title="Atualizar Documentos">
+            <i class="fas fa-sync-alt"></i> Atualizar
+          </button>
+        </div>
+
+        <div class="holerites-container" id="holeritesContainer">
+          <!-- Loading State (Padrão ao carregar a página) -->
+          <div class="dash-loading" id="dashLoading">
+            <i class="fas fa-circle-notch fa-spin"></i>
+            <p>Buscando seus documentos...</p>
+          </div>
+          
+          <!-- Lista de Holerites será injetada aqui pelo JS -->
+          <div class="holerites-grid" id="holeritesGrid" style="display: none;">
+            <!-- Exemplo de item:
+            <div class="holerite-card">
+              <div class="holerite-icon"><i class="fas fa-file-pdf"></i></div>
+              <div class="holerite-info">
+                <h3>maio_2026.pdf</h3>
+                <span>Documento PDF</span>
+              </div>
+              <a href="#" class="btn-download"><i class="fas fa-download"></i> Baixar</a>
+            </div>
+            -->
+          </div>
+
+          <!-- Empty State (Se não houver arquivos) -->
+          <div class="dash-empty" id="dashEmpty" style="display: none;">
+            <i class="fas fa-folder-open"></i>
+            <p>Nenhum documento encontrado no momento.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

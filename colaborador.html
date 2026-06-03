@@ -45,7 +45,7 @@
           <p class="login-subtitle">Seja bem-vindo ao portal digital da <strong>VAZ Vigilância!</strong></p>
         </div>
         
-        <form class="login-form" id="colaboradorForm" onsubmit="event.preventDefault();">
+        <form class="login-form" id="colaboradorForm">
           <div class="form-group">
             <label for="cpf">Digite o seu CPF</label>
             <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" required>
@@ -104,28 +104,13 @@
       <div class="footer-bottom">
         <p>&copy; 2025 VAZ Vigilância Patrimonial LTDA. Todos os direitos reservados.</p>
         <p>Autorizada pela Polícia Federal – Lei nº 14.967/2024</p>
+        <p class="footer-proverb">"Consagre ao Senhor tudo o que você faz, e os seus planos serão bem-sucedidos." – Provérbios 16:3</p>
+        <p class="footer-dev">Desenvolvido pela Indev</p>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
-  <script>
-    // CPF Mask
-    const cpfInput = document.getElementById('cpf');
-    if (cpfInput) {
-      cpfInput.addEventListener('input', function(e) {
-        let value = e.target.value;
-        value = value.replace(/\D/g, ""); // Remove tudo que não é dígito
-        if (value.length > 11) value = value.substring(0, 11);
-        
-        // Formata
-        value = value.replace(/(\d{3})(\d)/, "$1.$2");
-        value = value.replace(/(\d{3})(\d)/, "$1.$2");
-        value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-        
-        e.target.value = value;
-      });
-    }
-  </script>
+  <script src="js/login.js"></script>
 </body>
 </html>

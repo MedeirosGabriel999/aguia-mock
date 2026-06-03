@@ -86,21 +86,116 @@ if (fileInput) {
 }
 
 // ========== FORMS ==========
+// Substitua as URLs abaixo pelas URLs de Teste/Produção do seu n8n Webhook
+const WEBHOOK_URL_ORCAMENTO = "https://n8n.space-cloud.tech/webhook-test/orcamento";
+const WEBHOOK_URL_CURRICULO = "https://n8n.space-cloud.tech/webhook-test/curriculo";
+
 function closeModal() {
   document.getElementById('modalSucesso').classList.remove('active');
 }
 
-document.getElementById('formOrcamento').addEventListener('submit', (e) => {
+document.getElementById('formOrcamento').addEventListener('submit', async (e) => {
   e.preventDefault();
-  document.getElementById('modalSucesso').classList.add('active');
-  e.target.reset();
+  
+  const btn = e.target.querySelector('button[type="submit"]');
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+  btn.disabled = true;
+
+  const payload = {
+    nome: document.getElementById('orc-nome').value,
+    email: document.getElementById('orc-email').value,
+    telefone: document.getElementById('orc-tel').value,
+    empresa: document.getElementById('orc-empresa').value,
+    servico: document.getElementById('orc-servico').value,
+    cidade: document.getElementById('orc-cidade').value,
+    mensagem: document.getElementById('orc-msg').value
+  };
+
+  try {
+    const response = await fetch(WEBHOOK_URL_ORCAMENTO, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+      document.getElementById('modalSucesso').classList.add('active');
+      e.target.reset();
+    } else {
+      alert("Houve um erro ao enviar sua solicitação. Tente novamente.");
+    }
+  } catch (error) {
+    console.error("Erro no envio:", error);
+    alert("Erro de conexão ao enviar o formulário.");
+  } finally {
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+  }
 });
 
-document.getElementById('formTrabalhe').addEventListener('submit', (e) => {
+// Função auxiliar para converter arquivo em Base64
+const fileToBase64 = file => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => resolve(reader.result);
+  reader.onerror = error => reject(error);
+});
+
+document.getElementById('formTrabalhe').addEventListener('submit', async (e) => {
   e.preventDefault();
-  document.getElementById('modalSucesso').classList.add('active');
-  e.target.reset();
-  if (fileName) { fileName.style.display = 'none'; fileName.textContent = ''; }
+
+  const btn = e.target.querySelector('button[type="submit"]');
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+  btn.disabled = true;
+
+  const fileInput = document.getElementById('trab-cv');
+  let fileBase64 = null;
+  let fileNameStr = "";
+  let fileMime = "";
+
+  if (fileInput.files && fileInput.files.length > 0) {
+    const file = fileInput.files[0];
+    fileNameStr = file.name;
+    fileMime = file.type;
+    fileBase64 = await fileToBase64(file);
+  }
+
+  const payload = {
+    nome: document.getElementById('trab-nome').value,
+    email: document.getElementById('trab-email').value,
+    telefone: document.getElementById('trab-tel').value,
+    cargo: document.getElementById('trab-cargo').value,
+    mensagem: document.getElementById('trab-msg').value,
+    curriculo: {
+      nome_arquivo: fileNameStr,
+      mime_type: fileMime,
+      base64: fileBase64
+    }
+  };
+
+  try {
+    const response = await fetch(WEBHOOK_URL_CURRICULO, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+      document.getElementById('modalSucesso').classList.add('active');
+      e.target.reset();
+      if (fileName) { fileName.style.display = 'none'; fileName.textContent = ''; }
+    } else {
+      alert("Houve um erro ao enviar sua candidatura. Tente novamente.");
+    }
+  } catch (error) {
+    console.error("Erro no envio:", error);
+    alert("Erro de conexão ao enviar o formulário.");
+  } finally {
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+  }
 });
 
 // ========== ACTIVE NAV LINK ==========

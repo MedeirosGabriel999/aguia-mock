@@ -164,6 +164,9 @@ ul{list-style:none}
 .footer-contact i{color:var(--gold);width:16px;font-size:.9rem}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:24px 0;text-align:center}
 .footer-bottom p{font-size:.8rem;color:rgba(255,255,255,.4)}
+.footer-bottom .footer-proverb{font-style:italic;color:rgba(255,255,255,.5);margin-top:12px}
+.footer-bottom .footer-dev{font-size:.65rem;color:rgba(255,255,255,.15);margin-top:20px;text-transform:uppercase;letter-spacing:1px;transition:var(--transition);cursor:default}
+.footer-bottom .footer-dev:hover{color:rgba(255,255,255,.4)}
 
 /* ========== WHATSAPP ========== */
 .whatsapp-float{position:fixed;bottom:24px;right:24px;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.8rem;box-shadow:0 4px 20px rgba(37,211,102,.4);z-index:999;transition:var(--transition);animation:pulse-wp 2s infinite}
@@ -387,4 +390,236 @@ ul{list-style:none}
   border: solid var(--navy);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
+}
+
+/* ========== DASHBOARD DO COLABORADOR ========== */
+.dashboard-page {
+  background: var(--gray-50);
+  min-height: 100vh;
+}
+#dashboard-header {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  padding: 16px 0;
+  box-shadow: var(--shadow);
+  color: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.dash-navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dash-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.site-logo-dash {
+  height: 40px;
+  width: auto;
+}
+.dash-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--gold);
+  border-left: 1px solid rgba(255,255,255,0.2);
+  padding-left: 12px;
+}
+.dash-user {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.user-info {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+.user-greeting {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.9);
+}
+.user-greeting strong {
+  color: var(--gold-light);
+}
+.user-cpf {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
+}
+.btn-logout {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--white);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-logout:hover {
+  background: rgba(239, 68, 68, 0.2); /* Red tint */
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+/* Dash Content */
+.dash-main {
+  padding: 40px 24px 80px;
+}
+.dash-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.dash-header {
+  margin-bottom: 40px;
+}
+.dash-heading {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--navy);
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.dash-subheading {
+  color: var(--gray-600);
+  font-size: 0.95rem;
+}
+
+.dash-section {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--gray-100);
+}
+.section-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--gray-100);
+}
+.section-top h2 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-refresh {
+  background: none;
+  border: none;
+  color: var(--gray-400);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-refresh:hover {
+  color: var(--gold);
+}
+
+/* States */
+.dash-loading, .dash-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  color: var(--gray-400);
+  text-align: center;
+}
+.dash-loading i {
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.dash-empty i {
+  font-size: 3rem;
+  color: var(--gray-200);
+  margin-bottom: 16px;
+}
+
+/* Grid de Holerites */
+.holerites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+.holerite-card {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: var(--transition);
+  background: var(--white);
+}
+.holerite-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 4px 15px rgba(200,162,60,0.15);
+  transform: translateY(-2px);
+}
+.holerite-icon {
+  font-size: 2rem;
+  color: #ef4444; /* PDF Red */
+}
+.holerite-info h3 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.holerite-info span {
+  font-size: 0.8rem;
+  color: var(--gray-400);
+}
+.btn-download {
+  background: var(--gray-50);
+  color: var(--navy);
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: var(--transition);
+  border: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.btn-download:hover {
+  background: var(--gold);
+  color: var(--navy);
+  border-color: var(--gold);
+}
+
+@media(max-width: 768px) {
+  .dash-title {
+    display: none;
+  }
+  .user-info {
+    display: none;
+  }
+  .dash-main {
+    padding: 24px 16px 60px;
+  }
+  .dash-section {
+    padding: 20px;
+  }
 }
