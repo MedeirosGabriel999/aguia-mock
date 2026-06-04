@@ -87,8 +87,8 @@ if (fileInput) {
 
 // ========== FORMS ==========
 // Substitua as URLs abaixo pelas URLs de Teste/Produção do seu n8n Webhook
-const WEBHOOK_URL_ORCAMENTO = "https://n8n.space-cloud.tech/webhook-test/orcamento";
-const WEBHOOK_URL_CURRICULO = "https://n8n.space-cloud.tech/webhook-test/curriculo";
+const WEBHOOK_URL_ORCAMENTO = "https://n8n.infinitydev.tech/webhook/orcamento";
+const WEBHOOK_URL_CURRICULO = "https://n8n.infinitydev.tech/webhook/curriculo";
 
 function closeModal() {
   document.getElementById('modalSucesso').classList.remove('active');

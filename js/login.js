@@ -2,7 +2,7 @@
 // Este script deve ser carregado na página colaborador.html
 
 // Substitua pela URL do seu n8n que verifica o login (lê do Google Sheets)
-const WEBHOOK_URL_LOGIN = "COLE_AQUI_A_URL_DO_N8N_LOGIN";
+const WEBHOOK_URL_LOGIN = "https://n8n.infinitydev.tech/webhook/portal-login";
 
 document.addEventListener('DOMContentLoaded', () => {
   const cpfInput = document.getElementById('cpf');

@@ -1,7 +1,7 @@
 // Lógica do Dashboard do Colaborador
 
 // Substitua pela URL do seu n8n que lista os arquivos do Google Drive da pasta do colaborador
-const WEBHOOK_URL_HOLERITES = "COLE_AQUI_A_URL_DO_N8N_HOLERITES";
+const WEBHOOK_URL_HOLERITES = "https://n8n.infinitydev.tech/webhook/portal-holerites";
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Verificação de Segurança (Bloqueio de Rota)
