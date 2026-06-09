@@ -1,0 +1,32 @@
+{
+  "_instrucoes": "Para atualizar: edite este arquivo, troque os textos e salve. O site lê sozinho. Datas no formato AAAA-MM-DD. Para esconder um item, basta apagar do array.",
+
+  "cursos": [],
+
+  "vagas": [
+    {
+      "cargo": "Fiscal de loja",
+      "local": "Divinópolis – MG",
+      "tipo": "CLT",
+      "turno": "15:30 às 21:30",
+      "requisitos": [
+        "Pontualidade e assiduidade",
+        "Vaga masculina"
+      ],
+      "regime": [
+        "44 horas semanais",
+        "Segunda a sábado",
+        "15:30 às 21:30",
+        "Vaga para Divinópolis"
+      ],
+      "beneficios": [
+        "Salário: R$ 2.300",
+        "Vale-transporte",
+        "Ticket: R$ 400,00"
+      ],
+      "contato": "Envie o seu currículo para (37) 98416-8721",
+      "whatsapp": "5537984168721",
+      "status": "Aberta"
+    }
+  ]
+}

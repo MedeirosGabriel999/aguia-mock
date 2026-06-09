@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css?v=2.0">
+  <link rel="stylesheet" href="css/style.css?v=3.1">
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
   <link rel="apple-touch-icon" href="assets/images/favicon.png">
 </head>
@@ -26,6 +26,7 @@
         <li><a href="#historia">História</a></li>
         <li><a href="#avaliacoes">Avaliações</a></li>
         <li><a href="#orcamento">Orçamento</a></li>
+        <li><a href="#processos">Processos Seletivos</a></li>
         <li><a href="colaborador.html">Portal do Colaborador</a></li>
         <li><a href="#trabalhe">Trabalhe Conosco</a></li>
       </ul>
@@ -38,7 +39,10 @@
   <section id="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <span class="hero-badge"><i class="fas fa-certificate"></i> Autorizada pela Polícia Federal</span>
+      <div class="hero-badges">
+        <span class="hero-badge"><i class="fas fa-certificate"></i> Autorizada pela Polícia Federal</span>
+        <button class="hero-badge hero-badge--btn" id="btnVerAlvara"><i class="fas fa-file-shield"></i> Ver Alvará <i class="fas fa-arrow-right"></i></button>
+      </div>
       <h1 class="hero-title-brand">VAZ <span class="gold">Vigilância</span> Patrimonial</h1>
       <p class="hero-subtitle">Excelência em Segurança. Confiança que Protege.</p>
       <p>Soluções completas em vigilância patrimonial para proteger o que realmente importa.</p>
@@ -79,15 +83,12 @@
           <h3>Vigilância Patrimonial</h3>
           <p>Profissionais altamente treinados e capacitados para garantir a segurança e proteção do seu patrimônio 24 horas.</p>
         </div>
-        <div class="service-card">
-          <div class="service-icon"><i class="fas fa-id-card-clip"></i></div>
-          <h3>Controle de Acesso</h3>
-          <p>Gerenciamento completo de entradas e saídas com tecnologia de ponta e procedimentos rigorosos de identificação.</p>
-        </div>
-        <div class="service-card">
+        <div class="service-card service-card--soon">
+          <span class="soon-badge"><i class="fas fa-hourglass-half"></i> Em Breve</span>
           <div class="service-icon"><i class="fas fa-video"></i></div>
           <h3>Monitoramento CFTV</h3>
           <p>Sistemas de câmeras e monitoramento eletrônico 24h para vigilância contínua e registro de ocorrências.</p>
+          <span class="soon-note">Aguardando autorização da Polícia Federal</span>
         </div>
         <div class="service-card">
           <div class="service-icon"><i class="fas fa-route"></i></div>
@@ -99,10 +100,12 @@
           <h3>Segurança Condominial</h3>
           <p>Soluções customizadas para condomínios residenciais e comerciais, com portaria e monitoramento integrado.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card service-card--soon">
+          <span class="soon-badge"><i class="fas fa-hourglass-half"></i> Em Breve</span>
           <div class="service-icon"><i class="fas fa-truck-fast"></i></div>
           <h3>Escolta Armada</h3>
           <p>Proteção especializada e tática para o transporte de cargas valiosas, garantindo a integridade do seu patrimônio.</p>
+          <span class="soon-note">Aguardando autorização da Polícia Federal</span>
         </div>
       </div>
     </div>
@@ -157,18 +160,57 @@
   <!-- AVALIAÇÕES -->
   <section id="avaliacoes" class="section section-gray">
     <div class="container">
-      <div class="section-header"><span class="section-tag">Depoimentos</span><h2>O que nossos <span class="gold">Clientes</span> dizem</h2></div>
+      <div class="section-header"><span class="section-tag">Clientes & Operações</span><h2>Quem confia na <span class="gold">VAZ</span></h2><p class="section-desc">Atuamos lado a lado com órgãos públicos, eventos de grande porte e prefeituras em diversas cidades de Minas Gerais.</p></div>
       <div class="reviews-grid">
-        <div class="review-card"><div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Excelente serviço de vigilância. Os profissionais são extremamente competentes e atenciosos. Recomendo fortemente!"</p><div class="review-author"><div class="review-avatar">JS</div><div><strong>João Silva</strong><span>Indústria Metalúrgica Silva</span></div></div></div>
-        <div class="review-card"><div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Desde que contratamos a VAZ, a segurança do nosso condomínio melhorou significativamente. Profissionais de primeira!"</p><div class="review-author"><div class="review-avatar">MS</div><div><strong>Maria Santos</strong><span>Condomínio Residencial Park</span></div></div></div>
-        <div class="review-card"><div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Atendimento rápido e eficiente. A equipe é muito bem treinada e transmite total confiança para nossa empresa."</p><div class="review-author"><div class="review-avatar">CO</div><div><strong>Carlos Oliveira</strong><span>Supermercado Oliveira</span></div></div></div>
-        <div class="review-card"><div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"A VAZ superou todas as nossas expectativas. O monitoramento 24h nos dá uma tranquilidade enorme."</p><div class="review-author"><div class="review-avatar">AF</div><div><strong>Ana Ferreira</strong><span>Escritório Ferreira & Advogados</span></div></div></div>
-        <div class="review-card"><div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Profissionalismo e compromisso definem a VAZ. Nossa fábrica está muito mais segura com a vigilância deles."</p><div class="review-author"><div class="review-avatar">RL</div><div><strong>Roberto Lima</strong><span>Fábrica Lima Têxtil</span></div></div></div>
-        <div class="review-card"><div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Contratamos para o shopping e o resultado foi imediato. Redução drástica de incidentes. Equipe nota 10!"</p><div class="review-author"><div class="review-avatar">PS</div><div><strong>Patrícia Souza</strong><span>Shopping Center Pátio Sul</span></div></div></div>
-        <div class="review-card"><div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Serviço de ronda motorizada impecável. Pontualidade e eficiência são marcas registradas da VAZ."</p><div class="review-author"><div class="review-avatar">FC</div><div><strong>Fernando Costa</strong><span>Galpão Logístico Costa</span></div></div></div>
-        <div class="review-card"><div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"A segurança do nosso hospital melhorou 100% após a contratação da VAZ. Pacientes e colaboradores mais tranquilos."</p><div class="review-author"><div class="review-avatar">LA</div><div><strong>Luciana Almeida</strong><span>Hospital Santa Clara</span></div></div></div>
-        <div class="review-card"><div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Empresa séria e comprometida. O controle de acesso implantado na escola trouxe muito mais segurança para os alunos."</p><div class="review-author"><div class="review-avatar">MP</div><div><strong>Marcos Pereira</strong><span>Escola Estadual Dom Pedro</span></div></div></div>
-        <div class="review-card"><div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Melhor custo-benefício do mercado! A VAZ entrega qualidade e comprometimento em cada detalhe do serviço."</p><div class="review-author"><div class="review-avatar">JR</div><div><strong>Juliana Ribeiro</strong><span>Estacionamento Park Center</span></div></div></div>
+        <div class="review-card">
+          <span class="review-tag"><i class="fas fa-calendar-star"></i> Evento</span>
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"A segurança patrimonial entregue pela VAZ foi determinante para o sucesso do evento. Equipe pontual, postura impecável e total alinhamento com a organização do parque."</p>
+          <div class="review-author"><div class="review-avatar">DE</div><div><strong>DIVINAEXPO 2026</strong><span>Divinópolis – MG</span></div></div>
+        </div>
+        <div class="review-card">
+          <span class="review-tag"><i class="fas fa-calendar-star"></i> Evento</span>
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"Atender o Carnaval da região de Uberaba exigia uma operação robusta e segura. A VAZ se mostrou preparada, com efetivo treinado e resposta rápida durante todos os dias de evento."</p>
+          <div class="review-author"><div class="review-avatar">CU</div><div><strong>Carnaval Região de Uberaba 2026</strong><span>Uberaba – MG</span></div></div>
+        </div>
+        <div class="review-card">
+          <span class="review-tag"><i class="fas fa-landmark"></i> Órgão Público</span>
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"Profissionais comprometidos e atenciosos no atendimento ao público. A vigilância da VAZ trouxe tranquilidade para colaboradores e usuários da autarquia."</p>
+          <div class="review-author"><div class="review-avatar">SAAE</div><div><strong>SAAE Sete Lagoas</strong><span>Sete Lagoas – MG</span></div></div>
+        </div>
+        <div class="review-card">
+          <span class="review-tag"><i class="fas fa-landmark"></i> Órgão Público</span>
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"Serviço sério, com vigilantes bem apresentados e procedimentos rigorosos. Recomendamos a VAZ pela seriedade no atendimento ao consumidor e ao patrimônio público."</p>
+          <div class="review-author"><div class="review-avatar">PC</div><div><strong>PROCON Caeté</strong><span>Caeté – MG</span></div></div>
+        </div>
+        <div class="review-card">
+          <span class="review-tag"><i class="fas fa-landmark"></i> Órgão Público</span>
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"Excelente parceria. A VAZ garante o funcionamento seguro das sessões e do prédio da casa legislativa, com discrição e profissionalismo."</p>
+          <div class="review-author"><div class="review-avatar">CM</div><div><strong>Câmara Municipal de Caeté</strong><span>Caeté – MG</span></div></div>
+        </div>
+        <div class="review-card">
+          <span class="review-tag"><i class="fas fa-landmark"></i> Prefeitura</span>
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"A Praça de Esportes recebe centenas de cidadãos por dia. Com a VAZ atuando na vigilância, ganhamos um padrão de segurança que faz diferença no dia a dia da comunidade."</p>
+          <div class="review-author"><div class="review-avatar">PI</div><div><strong>Prefeitura de Itaúna – Praça de Esportes</strong><span>Itaúna – MG</span></div></div>
+        </div>
+      </div>
+
+      <!-- FAIXA DE COBERTURA -->
+      <div class="coverage-banner">
+        <div class="coverage-icon"><i class="fas fa-map-location-dot"></i></div>
+        <div class="coverage-text">
+          <h3>Presença em <span class="gold">toda Minas Gerais</span></h3>
+          <p>Atendemos <strong>13 cidades</strong> na região de Uberaba e também operamos em <strong>Lagoa Santa, Sete Lagoas, Caeté, Itaúna, Divinópolis</strong> e demais municípios — sempre com o mesmo padrão de excelência.</p>
+        </div>
+        <div class="coverage-stats">
+          <div><strong>13+</strong><span>Cidades em Uberaba</span></div>
+          <div><strong>5</strong><span>Regiões de MG</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -191,11 +233,10 @@
             <select id="orc-servico" required>
               <option value="">Selecione um serviço</option>
               <option>Vigilância Patrimonial</option>
-              <option>Controle de Acesso</option>
-              <option>Monitoramento CFTV</option>
+              <option>Monitoramento CFTV (em breve)</option>
               <option>Ronda Motorizada</option>
               <option>Segurança Condominial</option>
-              <option>Escolta Armada</option>
+              <option>Escolta Armada (em breve)</option>
               <option>Outro</option>
             </select>
           </div>
@@ -207,8 +248,36 @@
     </div>
   </section>
 
+  <!-- PROCESSOS SELETIVOS -->
+  <section id="processos" class="section section-gray">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Oportunidades</span>
+        <h2>Nossos <span class="gold">Processos Seletivos</span></h2>
+        <p class="section-desc">Cursos de formação abertos e vagas de emprego disponíveis. Atualizado periodicamente.</p>
+      </div>
+
+      <div class="processos-tabs">
+        <button class="proc-tab active" data-tab="vagas"><i class="fas fa-briefcase"></i> Vagas em Aberto <span class="proc-count" id="count-vagas">0</span></button>
+        <button class="proc-tab" data-tab="cursos"><i class="fas fa-graduation-cap"></i> Cursos Abertos <span class="proc-count" id="count-cursos">0</span></button>
+      </div>
+
+      <div class="proc-panel active" id="panel-vagas">
+        <div class="proc-grid" id="grid-vagas">
+          <div class="proc-loading"><i class="fas fa-spinner fa-spin"></i> Carregando vagas...</div>
+        </div>
+      </div>
+
+      <div class="proc-panel" id="panel-cursos">
+        <div class="proc-grid" id="grid-cursos">
+          <div class="proc-loading"><i class="fas fa-spinner fa-spin"></i> Carregando cursos...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- TRABALHE CONOSCO -->
-  <section id="trabalhe" class="section section-gray">
+  <section id="trabalhe" class="section section-light">
     <div class="container">
       <div class="section-header"><span class="section-tag">Carreiras</span><h2>Trabalhe <span class="gold">Conosco</span></h2><p class="section-desc">Faça parte da nossa equipe! Envie seu currículo e venha crescer com a VAZ.</p></div>
       <form class="form-card" id="formTrabalhe">
@@ -263,7 +332,7 @@
         </div>
         <div class="footer-col">
           <h4>Serviços</h4>
-          <ul><li><a href="#servicos">Vigilância Patrimonial</a></li><li><a href="#servicos">Controle de Acesso</a></li><li><a href="#servicos">Monitoramento CFTV</a></li><li><a href="#servicos">Ronda Motorizada</a></li><li><a href="#servicos">Escolta Armada</a></li></ul>
+          <ul><li><a href="#servicos">Vigilância Patrimonial</a></li><li><a href="#servicos">Monitoramento CFTV</a></li><li><a href="#servicos">Ronda Motorizada</a></li><li><a href="#servicos">Segurança Condominial</a></li><li><a href="#servicos">Escolta Armada</a></li></ul>
         </div>
         <div class="footer-col">
           <h4>Contato</h4>
@@ -296,6 +365,21 @@
     </div>
   </div>
 
-  <script src="js/main.js"></script>
+  <!-- MODAL ALVARÁ PF -->
+  <div class="modal-overlay" id="modalAlvara">
+    <div class="modal-card modal-card--doc">
+      <button class="modal-close" onclick="closeAlvara()" aria-label="Fechar"><i class="fas fa-xmark"></i></button>
+      <div class="modal-doc-header">
+        <i class="fas fa-shield-halved"></i>
+        <h3>Alvará de Funcionamento</h3>
+        <p>Autorização concedida pela <strong>Polícia Federal</strong> – Lei nº 14.967/2024</p>
+      </div>
+      <div class="modal-doc-body" id="alvaraBody">
+        <!-- preenchido pelo JS: PDF/imagem se existir, ou placeholder -->
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js?v=3.1"></script>
 </body>
 </html>

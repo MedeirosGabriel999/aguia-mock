@@ -198,6 +198,199 @@ document.getElementById('formTrabalhe').addEventListener('submit', async (e) => 
   }
 });
 
+// ========== MODAL ALVARÁ PF ==========
+// Ordem de tentativa: PDF, JPG, PNG. Coloque o arquivo em assets/docs/
+const ALVARA_CANDIDATOS = [
+  { src: 'assets/docs/alvara-pf.pdf', tipo: 'pdf' },
+  { src: 'assets/docs/alvara-pf.jpg', tipo: 'img' },
+  { src: 'assets/docs/alvara-pf.png', tipo: 'img' }
+];
+
+async function detectarAlvara() {
+  for (const candidato of ALVARA_CANDIDATOS) {
+    try {
+      const res = await fetch(candidato.src, { method: 'HEAD' });
+      if (res.ok) return candidato;
+    } catch (_) { /* ignora */ }
+  }
+  return null;
+}
+
+function renderAlvaraPlaceholder() {
+  return `
+    <div class="alvara-placeholder">
+      <div class="icon-wrap"><i class="fas fa-file-shield"></i></div>
+      <h4>Documento em digitalização</h4>
+      <p>Nosso alvará de funcionamento autorizado pela Polícia Federal será disponibilizado aqui em breve. Caso precise consultá-lo agora, entre em contato direto pelo WhatsApp.</p>
+      <div class="alvara-actions">
+        <a href="https://wa.me/5537991479482?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20o%20alvar%C3%A1%20da%20VAZ%20Vigil%C3%A2ncia." target="_blank"><i class="fab fa-whatsapp"></i> Solicitar Alvará</a>
+      </div>
+    </div>`;
+}
+
+function renderAlvaraDoc(candidato) {
+  if (candidato.tipo === 'pdf') {
+    return `
+      <embed src="${candidato.src}#toolbar=1&navpanes=0" type="application/pdf" />
+      <div class="alvara-actions">
+        <a href="${candidato.src}" target="_blank"><i class="fas fa-download"></i> Baixar PDF</a>
+      </div>`;
+  }
+  return `
+    <img src="${candidato.src}" alt="Alvará de Funcionamento – Polícia Federal" />
+    <div class="alvara-actions">
+      <a href="${candidato.src}" target="_blank" download><i class="fas fa-download"></i> Baixar Documento</a>
+    </div>`;
+}
+
+async function openAlvara() {
+  const modal = document.getElementById('modalAlvara');
+  const body = document.getElementById('alvaraBody');
+  if (!modal || !body) return;
+  body.innerHTML = '<div class="proc-loading" style="padding:40px"><i class="fas fa-spinner fa-spin"></i> Carregando documento...</div>';
+  modal.classList.add('active');
+  const doc = await detectarAlvara();
+  body.innerHTML = doc ? renderAlvaraDoc(doc) : renderAlvaraPlaceholder();
+}
+
+function closeAlvara() {
+  document.getElementById('modalAlvara')?.classList.remove('active');
+}
+
+document.getElementById('btnVerAlvara')?.addEventListener('click', openAlvara);
+document.getElementById('modalAlvara')?.addEventListener('click', (e) => {
+  if (e.target.id === 'modalAlvara') closeAlvara();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeAlvara();
+});
+
+// ========== PROCESSOS SELETIVOS ==========
+const fmtDate = (iso) => {
+  if (!iso) return '';
+  const [y, m, d] = iso.split('-');
+  return `${d}/${m}/${y}`;
+};
+
+function renderVaga(v) {
+  const reqs = (v.requisitos || []).map(r => `<li>${r}</li>`).join('');
+  const regime = (v.regime || []).map(r => `<li>${r}</li>`).join('');
+  const benefs = (v.beneficios || []).map(b => `<li>${b}</li>`).join('');
+  
+  let contatoHtml = '';
+  if (v.contato) {
+    if (v.whatsapp) {
+      const waLink = `https://wa.me/${v.whatsapp}?text=Ol%C3%A1!%20Gostaria%20de%20enviar%20meu%20curr%C3%ADculo%20para%20a%20vaga%20de%20${encodeURIComponent(v.cargo)}.`;
+      contatoHtml = `
+        <div class="proc-contato" style="font-size: 0.85rem; margin-top: 4px; color: var(--gold); font-weight: 600; display: flex; align-items: center; gap: 8px;">
+          <i class="fab fa-whatsapp" style="font-size: 1.1rem;"></i>
+          <a href="${waLink}" target="_blank" style="text-decoration: underline; color: var(--gold-light);">${v.contato}</a>
+        </div>`;
+    } else {
+      contatoHtml = `
+        <div class="proc-contato" style="font-size: 0.85rem; margin-top: 4px; color: var(--gray-400); display: flex; align-items: center; gap: 8px;">
+          <i class="fas fa-info-circle"></i>
+          <span>${v.contato}</span>
+        </div>`;
+    }
+  }
+
+  const ctaButton = `<button class="proc-cta" data-interesse="${v.cargo}"><i class="fas fa-paper-plane"></i> Tenho Interesse</button>`;
+
+  return `
+    <div class="proc-card">
+      <div class="proc-card-header">
+        <h3 class="proc-card-title">${v.cargo}</h3>
+        <span class="proc-status">${v.status || 'Aberta'}</span>
+      </div>
+      <div class="proc-info">
+        ${v.local ? `<span class="proc-chip"><i class="fas fa-location-dot"></i> ${v.local}</span>` : ''}
+        ${v.tipo ? `<span class="proc-chip"><i class="fas fa-file-contract"></i> ${v.tipo}</span>` : ''}
+        ${v.turno ? `<span class="proc-chip"><i class="fas fa-clock"></i> ${v.turno}</span>` : ''}
+      </div>
+      ${reqs ? `<div class="proc-reqs"><strong>Requisitos</strong><ul>${reqs}</ul></div>` : ''}
+      ${regime ? `<div class="proc-reqs" style="border-left-color: var(--navy-light);"><strong>Regime</strong><ul>${regime}</ul></div>` : ''}
+      ${benefs ? `<div class="proc-reqs" style="border-left-color: #16A34A;"><strong>Benefícios</strong><ul>${benefs}</ul></div>` : ''}
+      ${ctaButton}
+    </div>`;
+}
+
+function renderCurso(c) {
+  return `
+    <div class="proc-card">
+      <div class="proc-card-header">
+        <h3 class="proc-card-title">${c.titulo}</h3>
+        <span class="proc-status">${c.status || 'Inscrições abertas'}</span>
+      </div>
+      ${c.descricao ? `<p class="proc-desc">${c.descricao}</p>` : ''}
+      <div class="proc-info">
+        ${c.carga_horaria ? `<span class="proc-chip"><i class="fas fa-clock"></i> ${c.carga_horaria}</span>` : ''}
+        ${c.modalidade ? `<span class="proc-chip"><i class="fas fa-chalkboard-user"></i> ${c.modalidade}</span>` : ''}
+        ${c.local ? `<span class="proc-chip"><i class="fas fa-location-dot"></i> ${c.local}</span>` : ''}
+        ${c.inicio ? `<span class="proc-chip"><i class="fas fa-calendar-day"></i> Início ${fmtDate(c.inicio)}</span>` : ''}
+        ${c.vagas ? `<span class="proc-chip"><i class="fas fa-users"></i> ${c.vagas} vagas</span>` : ''}
+      </div>
+      <button class="proc-cta" data-interesse="${c.titulo}"><i class="fas fa-paper-plane"></i> Tenho Interesse</button>
+    </div>`;
+}
+
+const emptyState = (label, genero = 'f') => `
+  <div class="proc-empty">
+    <i class="fas fa-clipboard-list"></i>
+    <p>${genero === 'f' ? 'Nenhuma' : 'Nenhum'} ${label} disponível no momento.</p>
+    <p style="font-size:.85rem;margin-top:8px">Acompanhe nosso Instagram <a href="https://instagram.com/vazvigilanciapatrimonial" target="_blank" style="color:var(--gold);font-weight:600">@vazvigilanciapatrimonial</a></p>
+  </div>`;
+
+async function loadProcessos() {
+  const gridVagas = document.getElementById('grid-vagas');
+  const gridCursos = document.getElementById('grid-cursos');
+  const countVagas = document.getElementById('count-vagas');
+  const countCursos = document.getElementById('count-cursos');
+  if (!gridVagas) return;
+
+  try {
+    const res = await fetch('data/processos.json?v=' + Date.now());
+    if (!res.ok) throw new Error('Falha ao carregar');
+    const data = await res.json();
+
+    const vagas = data.vagas || [];
+    const cursos = data.cursos || [];
+
+    countVagas.textContent = vagas.length;
+    countCursos.textContent = cursos.length;
+
+    gridVagas.innerHTML = vagas.length ? vagas.map(renderVaga).join('') : emptyState('vaga', 'f');
+    gridCursos.innerHTML = cursos.length ? cursos.map(renderCurso).join('') : emptyState('curso', 'm');
+
+    // Botões "Tenho Interesse" levam ao formulário Trabalhe Conosco
+    document.querySelectorAll('.proc-cta').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const interesse = btn.dataset.interesse || '';
+        const trab = document.getElementById('trabalhe');
+        const msg = document.getElementById('trab-msg');
+        if (msg && interesse) msg.value = `Olá! Tenho interesse em: ${interesse}.\n\n`;
+        if (trab) trab.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => document.getElementById('trab-nome')?.focus(), 700);
+      });
+    });
+  } catch (err) {
+    console.error('Erro processos seletivos:', err);
+    gridVagas.innerHTML = emptyState('vaga', 'f');
+    gridCursos.innerHTML = emptyState('curso', 'm');
+  }
+}
+
+// Alternância de abas
+document.querySelectorAll('.proc-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = tab.dataset.tab;
+    document.querySelectorAll('.proc-tab').forEach(t => t.classList.toggle('active', t === tab));
+    document.querySelectorAll('.proc-panel').forEach(p => {
+      p.classList.toggle('active', p.id === `panel-${target}`);
+    });
+  });
+});
+
 // ========== ACTIVE NAV LINK ==========
 const sections = document.querySelectorAll('section[id]');
 window.addEventListener('scroll', () => {
@@ -217,4 +410,5 @@ window.addEventListener('scroll', () => {
 document.addEventListener('DOMContentLoaded', () => {
   setupAnimations();
   animateCounters();
+  loadProcessos();
 });

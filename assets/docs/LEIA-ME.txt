@@ -1,0 +1,15 @@
+ALVARÁ DA POLÍCIA FEDERAL
+==========================
+
+Quando receber o arquivo do alvará, basta salvá-lo nesta pasta com
+UM dos seguintes nomes:
+
+  - alvara-pf.pdf       (recomendado - PDF)
+  - alvara-pf.jpg
+  - alvara-pf.png
+
+O site detecta automaticamente o arquivo e o exibe no modal
+"Ver Alvará" do Hero. Não precisa mexer em código.
+
+Se nenhum arquivo for encontrado, o modal mostra uma mensagem
+elegante "Documento em breve" com link de WhatsApp.

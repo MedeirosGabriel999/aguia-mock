@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "start": "npx http-server -a 127.0.0.1 -p 8085",
+    "dev": "npx http-server -a 127.0.0.1 -p 8085"
+  },
   "dependencies": {
     "jimp": "^0.16.1"
   }
